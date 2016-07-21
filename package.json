@@ -1,0 +1,15 @@
+{
+  "name": "buffer-based-routing",
+  "version": "0.0.0",
+  "description": "BufferBasedRouting",
+  "main": "app.js",
+  "author": {
+    "name": "lskaiser"
+  },
+  "dependencies": {
+    "express": "3.4.4",
+    "jade": "*",
+    "stylus": "*",
+    "request": "2.73.0"
+  }
+}
