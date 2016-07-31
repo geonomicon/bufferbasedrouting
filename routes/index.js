@@ -10,7 +10,14 @@ exports.index = function (req, res) {
 
 exports.bufferBasedRouting = function (req, res) {
     var pickers = [];
-    pickers = req.body.users;
+    if (!req.body.availabeExecutives) {
+        res.json({
+            'error': 'Invalid Response, try again',
+            'details': 'Argument availabeExecutives not found or response structure not valid'
+        });
+    };
+
+    pickers = req.body.availabeExecutives;
     pickupAddress = req.body.pickupAddress;
     request('http://api.opencagedata.com/geocode/v1/json?q=' + pickupAddress + '&key=93d639c2f2e101a955c9dd2ec8704fca', function (error, response, body) {
         if (!error && response.statusCode == 200) {
