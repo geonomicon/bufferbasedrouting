@@ -8,6 +8,24 @@ exports.index = function (req, res) {
     res.render('index', { title: 'BBR', year: new Date().getFullYear() });
 };
 
+exports.test = function (req, res) {
+    res.json({
+       'payload':req.params.payload,
+       'reaching method':'get',
+       'route':'test',
+       'details':'All working correctly'
+    });
+};
+
+exports.testPost = function (req, res) {
+    res.json({
+       'payload':req.body.payload,
+       'reaching method':'post',
+       'route':'test',
+       'details':'All working correctly'
+    });
+};
+
 exports.bufferBasedRouting = function (req, res) {
     var pickers = [];
     if (!req.body.availabeExecutives) {
