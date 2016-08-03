@@ -5,10 +5,14 @@
 var request = require('request');
 
 exports.index = function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.render('index', { title: 'BBR', year: new Date().getFullYear() });
 };
 
 exports.test = function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.json({
        'payload':req.params.payload,
        'reaching method':'get',
@@ -18,6 +22,8 @@ exports.test = function (req, res) {
 };
 
 exports.testPost = function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.json({
        'payload':req.body.payload,
        'reaching method':'post',
@@ -27,6 +33,8 @@ exports.testPost = function (req, res) {
 };
 
 exports.bufferBasedRouting = function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     var pickers = [];
     if (!req.body.availabeExecutives) {
         res.json({
