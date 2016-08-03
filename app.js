@@ -33,9 +33,9 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/test/:payload', routes.test);
-app.post('/test', routes.testPost);
-app.post('/route', routes.bufferBasedRouting);
+app.get('/dangling/test/:payload', routes.test);
+app.post('/dangling/test', routes.testPost);
+app.post('/dangling/route', routes.bufferBasedRouting);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
