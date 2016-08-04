@@ -78,6 +78,7 @@
     <Folder Include="typings\globals\jade\" />
     <Folder Include="typings\globals\node\" />
     <Folder Include="typings\globals\request\" />
+    <Folder Include="typings\globals\socket.io\" />
     <Folder Include="typings\globals\stylus\" />
     <Folder Include="views\" />
   </ItemGroup>
@@ -86,6 +87,7 @@
     <TypeScriptCompile Include="typings\globals\jade\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\node\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\request\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\socket.io\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\stylus\index.d.ts" />
     <TypeScriptCompile Include="typings\index.d.ts" />
   </ItemGroup>

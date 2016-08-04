@@ -7,8 +7,7 @@ var express = require('express');
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
-var io = require('socket.io').listen(server);
-server.listen(process.env.PORT || 3000);
+
 var app = express();
 
 // all environments
@@ -33,11 +32,14 @@ if ('development' == app.get('env')) {
     app.use(express.errorHandler());
 }
 
+var server = http.createServer(app).listen(app.get('port'), function () {
+    console.log('Express server listening on port ' + app.get('port'));
+});
+var io = require('socket.io').listen(server);
+server.listen(process.env.PORT || 3000);
+
 app.get('/', routes.index);
 app.get('/dangling/test/:payload', routes.test);
 app.post('/dangling/test', routes.testPost);
 app.post('/dangling/route', routes.bufferBasedRouting);
 
-http.createServer(app).listen(app.get('port'), function () {
-    console.log('Express server listening on port ' + app.get('port'));
-});
