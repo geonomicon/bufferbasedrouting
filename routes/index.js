@@ -65,6 +65,7 @@ exports.bufferBasedRouting = function (req, res) {
                 return t-u;
             });
             res.json(pickers);
+            io.sockets.emit('sendUsers','Rajat');
         } else {
             res.json({'error':'Could not Geocode Address'});
         }

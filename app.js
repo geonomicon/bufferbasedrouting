@@ -7,7 +7,8 @@ var express = require('express');
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
-
+var io = require('socket.io').listen(server);
+server.listen(process.env.PORT || 3000);
 var app = express();
 
 // all environments
