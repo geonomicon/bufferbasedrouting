@@ -41,5 +41,5 @@ server.listen(process.env.PORT || 3000);
 app.get('/', routes.index);
 app.get('/dangling/test/:payload', routes.test);
 app.post('/dangling/test', routes.testPost);
-app.post('/dangling/route', routes.bufferBasedRouting);
+app.post('/dangling/route', routes.bufferBasedRouting(io));
 
