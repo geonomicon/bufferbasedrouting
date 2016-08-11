@@ -3,7 +3,8 @@
  * GET home page.
  */
 var request = require('request');
-
+var Firebase = require('firebase');
+var path = require('path');
 exports.index = function (req, res) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -67,6 +68,12 @@ exports.bufferBasedRouting = function (io) {
                 });
                 res.json(pickers);
                 var sendUsers = { orignalBody: req.body, pickers };
+                Firebase.initializeApp({
+                    serviceAccount: path.resolve(__dirname, 'Gluon-3a2ff1f6d836.json'),
+                    databaseURL: 'https://gluon.firebaseio.com'
+                });
+                var messageListRef = Firebase.database().ref('items');
+                messageListRef.push(sendUsers);
                 io.sockets.emit('sendUsers', sendUsers);
             } else {
                 res.json({ 'error': 'Could not Geocode Address' });

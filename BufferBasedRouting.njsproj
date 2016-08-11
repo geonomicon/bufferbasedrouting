@@ -50,6 +50,7 @@
     <Content Include="public\javascripts\respond.min.js" />
     <Content Include="public\javascripts\_references.js" />
     <Content Include="package.json" />
+    <Content Include="routes\Gluon-3a2ff1f6d836.json" />
     <Content Include="typings.json" />
     <Content Include="public\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="public\fonts\glyphicons-halflings-regular.svg" />
@@ -75,6 +76,7 @@
     <Folder Include="typings\" />
     <Folder Include="typings\globals\" />
     <Folder Include="typings\globals\express\" />
+    <Folder Include="typings\globals\firebase\" />
     <Folder Include="typings\globals\jade\" />
     <Folder Include="typings\globals\node\" />
     <Folder Include="typings\globals\request\" />
@@ -84,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="typings\globals\express\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\firebase\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jade\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\node\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\request\index.d.ts" />
