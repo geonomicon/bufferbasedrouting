@@ -3,11 +3,12 @@
  */
 var request = require('request');
 var Firebase = require('firebase');
+var path = require('path');
 Firebase.initializeApp({
         serviceAccount: path.resolve(__dirname, 'Gluon-3a2ff1f6d836.json'),
         databaseURL: 'https://gluon.firebaseio.com'
     });
-var path = require('path');
+
 exports.index = function(req, res) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
