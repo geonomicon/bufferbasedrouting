@@ -34,7 +34,7 @@ exports.deleteFirebase = function(req, res) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     
     var messageListRef = Firebase.database().ref('items');
-    messageListRef.remove(0);
+    messageListRef.$remove(0);
     res.json({
         'payload': 'Success',
         'details': 'All working correctly'
