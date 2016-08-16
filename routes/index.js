@@ -32,10 +32,8 @@ exports.test = function(req, res) {
 exports.deleteFirebase = function(req, res) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    Firebase.database().goOnline();
     var messageListRef = Firebase.database().ref('items');
     messageListRef.remove();
-    Firebase.database().goOffline();
     res.json({
         'payload': 'Success',
         'details': 'All working correctly'
@@ -95,7 +93,6 @@ exports.bufferBasedRouting = function(io) {
                 };
                 var messageListRef = Firebase.database().ref('items');
                 messageListRef.push(sendUsers);
-                Firebase.database().goOffline();
                 io.sockets.emit('sendUsers', sendUsers);
             }
             else {
