@@ -40,6 +40,6 @@ server.listen(process.env.PORT || 3000);
 
 app.get('/', routes.index);
 app.get('/dangling/test/:payload', routes.test);
-app.post('/dangling/test', routes.testPost);
+app.get('/dangling/delete', routes.deleteFirebase);
 app.post('/dangling/route', routes.bufferBasedRouting(io));
 
