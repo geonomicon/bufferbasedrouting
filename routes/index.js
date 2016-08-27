@@ -85,15 +85,10 @@ exports.bufferBasedRouting = function(io) {
                     u = Math.pow((r + s), 1 / 2);
                     return t - u;
                 });
-
-                res.json(pickers);
                 var sendUsers = { orignalBody: req.body, pickers, pickedBy:null, currentPicker:req.body.availabeExecutives[0].userid };
-                Firebase.initializeApp({
-                    serviceAccount: path.resolve(__dirname, 'Gluon-3a2ff1f6d836.json'),
-                    databaseURL: 'https://gluon.firebaseio.com'
-                });
                 var messageListRef = Firebase.database().ref('items');
                 messageListRef.push(sendUsers);
+                res.json(pickers);            
             }
             else {
                 res.json({
