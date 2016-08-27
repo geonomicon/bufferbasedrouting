@@ -67,7 +67,7 @@ exports.bufferBasedRouting = function (io) {
                     return t - u;
                 });
                 res.json(pickers);
-                var sendUsers = { orignalBody: req.body, pickers };
+                var sendUsers = { orignalBody: req.body, pickers, pickedBy:null };
                 Firebase.initializeApp({
                     serviceAccount: path.resolve(__dirname, 'Gluon-3a2ff1f6d836.json'),
                     databaseURL: 'https://gluon.firebaseio.com'
