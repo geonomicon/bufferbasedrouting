@@ -5,9 +5,9 @@ var request = require('request');
 var Firebase = require('firebase');
 var path = require('path');
 Firebase.initializeApp({
-        serviceAccount: path.resolve(__dirname, 'Gluon-3a2ff1f6d836.json'),
-        databaseURL: 'https://gluon.firebaseio.com'
-    });
+    serviceAccount: path.resolve(__dirname, 'Gluon-3a2ff1f6d836.json'),
+    databaseURL: 'https://gluon.firebaseio.com'
+});
 
 exports.index = function(req, res) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -85,13 +85,16 @@ exports.bufferBasedRouting = function(io) {
                     u = Math.pow((r + s), 1 / 2);
                     return t - u;
                 });
-                var sendUsers = { orignalBody: req.body, pickers, pickedBy:null, currentPicker:req.body.availabeExecutives[0].userid,fbkey:null };
+                var sendUsers = {
+                    orignalBody: req.body,
+                    pickers,
+                    pickedBy: null,
+                    currentPicker: req.body.availabeExecutives[0].userid
+                };
                 var messageListRef = Firebase.database().ref('items');
-                var pushThis = messageListRef.push(sendUsers);
-                messageListRef.child(pushThis.key()).set({fbkey:pushThis.key()});
-                res.json(pickers);            
-            }
-            else {
+                messageListRef.push(sendUsers);
+                res.json(pickers);
+            } else {
                 res.json({
                     'error': 'Could not Geocode Address'
                 });
