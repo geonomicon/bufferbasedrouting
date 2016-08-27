@@ -85,9 +85,10 @@ exports.bufferBasedRouting = function(io) {
                     u = Math.pow((r + s), 1 / 2);
                     return t - u;
                 });
-                var sendUsers = { orignalBody: req.body, pickers, pickedBy:null, currentPicker:req.body.availabeExecutives[0].userid };
+                var sendUsers = { orignalBody: req.body, pickers, pickedBy:null, currentPicker:req.body.availabeExecutives[0].userid,fbkey:null };
                 var messageListRef = Firebase.database().ref('items');
-                messageListRef.push(sendUsers);
+                var pushThis = messageListRef.push(sendUsers);
+                messageListRef.child(pushThis.key()).set({fbkey:pushThis.key()});
                 res.json(pickers);            
             }
             else {
