@@ -96,6 +96,7 @@ exports.bufferBasedRouting = function(io) {
                             var messageListRef = Firebase.database().ref('items');
                             messageListRef.push(sendUsers);
                             res.json(pickers);
+                            Firebase.database().goOffline();
                         } else {
                             res.json({
                                 'error': 'Could not Geocode Address'
