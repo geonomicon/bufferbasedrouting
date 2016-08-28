@@ -85,21 +85,31 @@ exports.bufferBasedRouting = function(io) {
                             u = Math.pow((r + s), 1 / 2);
                             return t - u;
                         });
-                            var sendUsers = {
-                                orignalBody: req.body,
-                                pickers,
-                                pickedBy: null,
-                                currentPickerIndex: 0,
-                                currentPicker: req.body.availabeExecutives[0].userid
-                            };
+                        var sendUsers = {
+                            orignalBody: req.body,
+                            pickers,
+                            pickedBy: null,
+                            currentPickerIndex: 0,
+                            currentPicker: req.body.availabeExecutives[0].userid
+                        };
+                        
+                        request.post({
+                                url: 'https://dharasabha.firebaseio.com/.json',
+                                json: sendUsers},
+                                function(err, httpResponse, body) {
+                                    if (!error && response.statusCode == 200) {
+                                        console.log('Successfully sent to fb server');
+                                    } else {
+                                        console.log('Unable to save data to firebase server');
+                                    }
+                                });
 
-                            var messageListRef = Firebase.database().ref('items');
-                            messageListRef.push(sendUsers,function(){
+                            var messageListRef = Firebase.database().ref('items'); messageListRef.push(sendUsers, function() {
                                 Firebase.database().goOffline();
-                            });
-                            res.json(pickers);
-                            
-                        } else {
+                            }); res.json(pickers);
+
+                        }
+                        else {
                             res.json({
                                 'error': 'Could not Geocode Address'
                             });
