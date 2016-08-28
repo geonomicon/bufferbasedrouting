@@ -62,6 +62,12 @@ exports.bufferBasedRouting = function(io) {
                     'details': 'Argument availabeExecutives not found or response structure not valid'
                 });
             };
+            if (req.body.availabeExecutives.length==0) {
+                res.json({
+                    'error': 'Invalid Response, try again',
+                    'details': 'Argument availabeExecutives has no Users'
+                });
+            };
             if (!req.body.pickupAddress) {
                 res.json({
                     'error': 'Invalid Response, try again',
@@ -85,6 +91,7 @@ exports.bufferBasedRouting = function(io) {
                             u = Math.pow((r + s), 1 / 2);
                             return t - u;
                         });
+                        
                         var sendUsers = {
                             orignalBody: req.body,
                             pickers,
