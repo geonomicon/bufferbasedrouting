@@ -100,6 +100,7 @@ exports.bufferBasedRouting = function(io) {
                     pickers,
                     pickedBy: null,
                     currentPickerIndex: 0,
+                    rejectedBy:[],
                     currentPicker: req.body.availabeExecutives[0].userid
                 };
 
