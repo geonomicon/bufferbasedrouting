@@ -56,6 +56,7 @@ exports.bufferBasedRouting = function(io) {
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         var pickers = [];
+        var rejectedBy = [];
         if (!req.body.availabeExecutives) {
             res.json({
                 'error': 'Invalid Response, try again',
@@ -100,7 +101,7 @@ exports.bufferBasedRouting = function(io) {
                     pickers,
                     pickedBy: null,
                     currentPickerIndex: 0,
-                    rejectedBy:[],
+                    rejectedBy,
                     currentPicker: req.body.availabeExecutives[0].userid
                 };
 
