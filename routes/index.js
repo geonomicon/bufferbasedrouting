@@ -38,6 +38,57 @@ exports.deleteFirebase = function(req, res) {
         'payload': 'Success',
         'details': 'All working correctly'
     });
+
+    request.post({
+            url: 'https://dharasabha.firebaseio.com/.json',
+            json: sendUsers
+        },
+        function(err, httpResponse, body) {
+            if (!error && response.statusCode == 200) {
+                console.log('Successfully sent to fb server');
+            } else {
+                console.log('Unable to save data to firebase server');
+            }
+        });
+};
+
+exports.deleteSocketCache = function(req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    request.delete({
+            url: 'https://dharasabha.firebaseio.com/.json'
+        },
+        function(err, httpResponse, body) {
+            if (!error && response.statusCode == 200) {
+              res.json({
+                  'success': 'Cleared SocketCache',
+                  'details': 'All Current Socket cache is pointing to null, Success from our side'
+              });
+            } else {
+              res.json({
+                  'error': 'Unable to clear',
+                  'details': 'All Current Socket cache is still intact, Something went wrong on our side'
+              });
+            }
+        });
+};
+
+exports.getSocketCache = function(req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    request.get({
+            url: 'https://dharasabha.firebaseio.com/.json'
+        },
+        function(err, httpResponse, body) {
+            if (!error && response.statusCode == 200) {
+              res.json(body);
+            } else {
+              res.json({
+                  'error': 'Unable to get',
+                  'details': 'Something went wrong on our side'
+              });
+            }
+        });
 };
 
 exports.testPost = function(req, res) {

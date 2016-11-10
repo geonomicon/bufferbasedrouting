@@ -41,5 +41,6 @@ server.listen(process.env.PORT || 3000);
 app.get('/', routes.index);
 app.get('/dangling/test/:payload', routes.test);
 app.get('/dangling/delete', routes.deleteFirebase);
+app.get('/socket/delete', routes.deleteSocketCache);
+app.get('/socket/get', routes.getSocketCache);
 app.post('/dangling/route', routes.bufferBasedRouting(io));
-
