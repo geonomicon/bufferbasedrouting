@@ -44,7 +44,7 @@ exports.deleteFirebase = function(req, res) {
             json: sendUsers
         },
         function(err, httpResponse, body) {
-            if (!error && response.statusCode == 200) {
+            if (!err && response.statusCode == 200) {
                 console.log('Successfully sent to fb server');
             } else {
                 console.log('Unable to save data to firebase server');
@@ -59,7 +59,7 @@ exports.deleteSocketCache = function(req, res) {
             url: 'https://dharasabha.firebaseio.com/.json'
         },
         function(err, httpResponse, body) {
-            if (!error && response.statusCode == 200) {
+            if (!err && httpResponse.statusCode == 200) {
               res.json({
                   'success': 'Cleared SocketCache',
                   'details': 'All Current Socket cache is pointing to null, Success from our side'
@@ -80,7 +80,7 @@ exports.getSocketCache = function(req, res) {
             url: 'https://dharasabha.firebaseio.com/.json'
         },
         function(err, httpResponse, body) {
-            if (!error && response.statusCode == 200) {
+            if (!err && httpResponse.statusCode == 200) {
               res.json(body);
             } else {
               res.json({
@@ -161,7 +161,7 @@ exports.bufferBasedRouting = function(io) {
                         json: sendUsers
                     },
                     function(err, httpResponse, body) {
-                        if (!error && response.statusCode == 200) {
+                        if (!err && httpResponse.statusCode == 200) {
                             console.log('Successfully sent to fb server');
                         } else {
                             console.log('Unable to save data to firebase server');
