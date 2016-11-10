@@ -131,7 +131,7 @@ exports.bufferBasedRouting = function(io) {
         };
         pickers = req.body.availabeExecutives;
         pickupAddress = req.body.pickupAddress;
-        request('http://maps.googleapis.com/maps/api/geocode/json?address=' + pickupAddress + '&key=93d639c2f2e101a955c9dd2ec8704fca', function(error, response, body) {
+        request('http://maps.googleapis.com/maps/api/geocode/json?address=' + pickupAddress, function(error, response, body) {
             if (!error && response.statusCode == 200 && JSON.parse(body).results.length > 0) {
                 toSend = JSON.parse(body);
                 pickupLat = toSend.results[0].geometry.location.lat;
