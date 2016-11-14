@@ -107,6 +107,7 @@ exports.bufferBasedRouting = function(io) {
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         var pickers = [];
+        var availableExecutives = [];
         var rejectedBy = ['init'];
         if (!req.body.availabeExecutives) {
             res.json({
@@ -129,6 +130,11 @@ exports.bufferBasedRouting = function(io) {
             });
             return;
         };
+        
+        for(var i=0;i<req.body.availabeExecutives.length;i++){
+          availableExecutives.push(req.body.availabeExecutives[i].userid);
+        }
+
         pickers = req.body.availabeExecutives;
         pickupAddress = req.body.pickupAddress;
         request('http://maps.googleapis.com/maps/api/geocode/json?address=' + pickupAddress, function(error, response, body) {
@@ -153,7 +159,8 @@ exports.bufferBasedRouting = function(io) {
                     pickedBy: null,
                     currentPickerIndex: 0,
                     rejectedBy,
-                    currentPicker: req.body.availabeExecutives[0].userid
+                    currentPicker: req.body.availabeExecutives[0].userid,
+                    availableExecutives,
                 };
 
                 request.post({
