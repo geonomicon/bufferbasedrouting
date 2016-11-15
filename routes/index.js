@@ -130,7 +130,7 @@ exports.bufferBasedRouting = function(io) {
             });
             return;
         };
-        
+
         for(var i=0;i<req.body.availabeExecutives.length;i++){
           availableExecutives.push(req.body.availabeExecutives[i].userid);
         }
@@ -157,6 +157,7 @@ exports.bufferBasedRouting = function(io) {
                     orignalBody: req.body,
                     pickers,
                     pickedBy: null,
+                    trackedBy:null,
                     currentPickerIndex: 0,
                     rejectedBy,
                     currentPicker: req.body.availabeExecutives[0].userid,
